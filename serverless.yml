@@ -1,0 +1,30 @@
+org: groros
+app: pay-per-lead-project
+service: create-new-roofing-contractor-webhook
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: us-east-1
+  iam:
+    role:
+      statements:
+      - Effect: Allow
+        Action: states:StartExecution
+        # will need to be changed for each service
+        Resource: arn:aws:states:us-east-1:906360379090:execution:Create-New-Roofer:f6e4d674-3e39-404d-98ef-a466f2b619c2
+  environment:
+    STATE_MACHINE_ARN: arn:aws:states:us-east-1:906360379090:execution:Create-New-Roofer:f6e4d674-3e39-404d-98ef-a466f2b619c2
+functions:
+  hello:
+    handler: handler.create_new_roofer_webhook
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+
+plugins:
+  - serverless-wsgi
+  - serverless-python-requirements
