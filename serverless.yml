@@ -13,9 +13,9 @@ provider:
       - Effect: Allow
         Action: states:StartExecution
         # will need to be changed for each service
-        Resource: arn:aws:states:us-east-1:906360379090:execution:Create-New-Roofer:f6e4d674-3e39-404d-98ef-a466f2b619c2
+        Resource: arn:aws:states:us-east-1:906360379090:stateMachine:Create-New-Roofer
   environment:
-    STATE_MACHINE_ARN: arn:aws:states:us-east-1:906360379090:execution:Create-New-Roofer:f6e4d674-3e39-404d-98ef-a466f2b619c2
+    STATE_MACHINE_ARN: arn:aws:states:us-east-1:906360379090:stateMachine:Create-New-Roofer
 functions:
   hello:
     handler: handler.create_new_roofer_webhook
